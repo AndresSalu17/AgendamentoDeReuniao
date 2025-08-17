@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import models.SalaModel;
@@ -48,6 +49,13 @@ public class SalaService {
         if(quantidadePessoas > sala.getCapacidade()){
             throw new IllegalArgumentException("Quantidade de pessoas a cima da permitida!");
         }
+    }
+    public List<SalaModel> listarSalasPorCapacidade() {
+        salas.sort(Comparator.comparingInt(SalaModel::getCapacidade));
+        for (SalaModel sala : salas) {
+            System.out.println(sala);
+        }
+        return salas;
     }
 
 }
